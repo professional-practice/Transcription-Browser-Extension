@@ -7,26 +7,30 @@
 </head>
 <body>
     <img src="https://olasteams.com/wp-content/uploads/2021/08/OLAS_WebLogoBlack.png" alt="" width="139" height="48">
-    <div id="transcribeAudio" style="display:block">
-        <button id="audio-button" width="200">Begin process</button>
-    </div>
-    <div id="transcribeMic" style="display:none">
-        <button id="mic-button" width="200">Record microphone</button>
-    </div>
-    <div id="loader" hidden></div>
-    
-    <!--<h1>Transcription Demo</h1> -->
+    <div id="backgroundimg"></div>
     <div id="container">
-        <textarea id="transcription" rows="18" cols="25">Transcription appears here...</textarea>
-        <textarea id="keyWords" rows="18" cols="25">Keywords appears here...</textarea>
-    </div>
-    <h3 id="status"></h3>
-    <div id="options">
-        <input type="radio" id = "audio-file" name="audio-file" value="Audio file" checked="checked">
-        <label for="audio-file">Audio File</label>
-        <input type="radio" id="stream" name="stream" value="Microphone Stream">
-        <label for="stream">Stream Microphone</label>
-    </div>
+        <div id="transcribeAudio" style="display:block">
+            <input type="file" id="myFile" name="filename">
+            <button id="audio-button" width="200">Begin process</button>
+        </div>
+        <div id="transcribeMic" style="display:none">
+            <button id="mic-button" width="200">Record microphone</button>
+        </div>
+        <div id="loader" hidden></div>
+       
+        <!--<h1>Transcription Demo</h1> -->
+        <div id="work-area">
+            <textarea id="transcription" rows="18" cols="25">Transcription appears here...</textarea>
+            <textarea id="keyWords" rows="18" cols="25">Keywords appears here...</textarea>
+        </div>
+        <h3 id="status">aas</h3>
+        <div id="options" hidden>
+            <input type="radio" id = "audio-file" name="audio-file" value="Audio file" checked="checked">
+            <label for="audio-file">Audio File</label>
+            <input type="radio" id="stream" name="stream" value="Microphone Stream">
+            <label for="stream">Stream Microphone</label>
+        </div>
+    </div> 
     <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>

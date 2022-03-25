@@ -1,6 +1,7 @@
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { TranscribeClient } from '@aws-sdk/client-transcribe';
+import { TranscribeStreamingClient } from "@aws-sdk/client-transcribe-streaming";
 
 // Set the AWS Region.
 const REGION = "us-east-1"; //e.g. "us-east-1"
