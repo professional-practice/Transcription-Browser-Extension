@@ -9,49 +9,6 @@ import { comprehendClient } from "../libs/comprehendClient.js";
 import MicrophoneStream from "microphone-stream";
 import { pcmEncodeChunk } from "../libs/audioUtilities.js";
 
-
-// Load the necessary credentials from .aws/credentials file
-// This is used to create an S3 bucket
-// (Unauthorized users cannot create a bucket, therefore a root user or
-//authorized user must be created and their credentials used)
-// const credentials = new AWS.SharedIniFileCredentials({ profile: "default" });
-// AWS.config.credentials = credentials;
-
-// Define the necessary parameters for beginning a Transcribe request
-// const transcribeParam = {
-//   TranscriptionJobName: "job1",
-//   LanguageCode: 'en-IE',
-//   MediaFormat: "mp3",
-//   Media: {
-//     // Ideally, the user specifies a location in a bucket for this
-//     MediaFileUri: "s3://mobuicead/roadwork.mp3",
-//   },
-//   OutputBucketName: "mobuicead"
-// };
-
-// Define parameters to determine when the transcription is complete
-const transcribeStatus = {
-  TranscriptionJobName: "job1"
-};
-
-const s3Download = {
-  Bucket: "mobuicead",
-  Key: "job1.json"
-};
-
-const deleteExistingJob = {
-  Bucket: "mobuicead",
-  Key: "job1.json"
-}
-
-const deleteJob = {
-  TranscriptionJobName: "job1"
-};
-
-// const createBucket = {
-//   Bucket:"buicead"
-// };
-
 // Called when the user presses the butto
 async function transcribe() {
   try {
@@ -62,42 +19,51 @@ async function transcribe() {
     var fileInput = document.querySelector("#myFile");
     console.log(fileInput.files[0]);
     let button = document.getElementById("audio-button");
+    let file = document.getElementById("myFile");
     let statusMessage = document.getElementById("status");
     let loader = document.getElementById("loader");
     let jobText = document.getElementById("transcription");
     let keyText = document.getElementById("keyWords");
 
+    // Retrieve the file name with file type and without
+    var job = fileInput.files[0].name.toString();
+    var filejobName = job.split('.').slice(0, -1).join('.');
+    var fileType = job.split(".").pop();
+
     // Update HTML
     button.hidden = true;
+    file.hidden = true;
     loader.hidden = false;
+
+    const deleteObj = {
+      Bucket: "mobuicead",
+      Key: filejobName
+    }
+
+    // Delete the recording if it exists in the bucket already
+    await s3Client.send(new DeleteObjectCommand(deleteObj)).then
+    (
+      (data) => {
+        console.log("File deleted from bucket", data);
+      },
+      (error) => {
+        console.log("Error: File not found", error);
+      });
+    
 
     // Specifying details for file upload
     const upload = {
       Bucket: "mobuicead",
-      Key: "roadwork.mp3",
+
+      Key: fileInput.files[0].name,
 
       // Content of the new object.
       Body: fileInput.files[0],
     };
 
-    // To upload to a bucket, the established bucket should have the CORS configuration file defined (PUT as an allowed method)
-    // https://medium.com/@shresthshruti09/uploading-files-in-aws-s3-bucket-through-javascript-sdk-with-progress-bar-d2a4b3ee77b5
-    // await s3Client.send(new PutObjectCommand(upload))
-    //   .then
-    //   (
-    //     (data) => {
-    //       console.log("File successfully uploaded", data);
-    //       statusMessage.innerHTML = "File uploaded..";
-    //     },
-    //     (error) => {
-    //       console.log("Error uploading file", error);
-    //       return;
-    //     }
-    //   )
-
     statusMessage.innerHTML = "Uploading file..";
     const toUpload = await s3Client.send(new PutObjectCommand(upload));
-    
+
     const objExistsParam = {
       Bucket: "mobuicead",
       Key: upload.Key
@@ -122,20 +88,14 @@ async function transcribe() {
 
     statusMessage.innerHTML = "Beginning transcription...";
 
-    const transcribeParam = {
-      TranscriptionJobName: "job1",
-      LanguageCode: 'en-IE',
-      MediaFormat: "mp3",
-      Media: {
-        MediaFileUri: "s3://mobuicead/roadwork.mp3"
-      },
-      OutputBucketName: upload.Bucket
-    };
-
     // Notify user that the transcription has begun
     console.log("Transcription started");
 
-    // // For testing: Deleting job if it exists
+    const deleteJob = {
+      TranscriptionJobName: filejobName
+    };
+
+    // Deleting job if it already exists
     await transcribeClient.send(new DeleteTranscriptionJobCommand(deleteJob))
       .then
       (
@@ -147,6 +107,23 @@ async function transcribe() {
         }
       )
 
+    console.log(filejobName);
+
+    // Define parameters for the transcribe status and what to transcribe
+    const transcribeStatus = {
+      TranscriptionJobName: filejobName
+    };
+
+    const transcribeParam = {
+      TranscriptionJobName: filejobName,
+      LanguageCode: 'en-IE',
+      MediaFormat: fileType,
+      Media: {
+        MediaFileUri: `s3://mobuicead/${job}`
+      },
+      OutputBucketName: upload.Bucket
+    };
+
     // Create two commands (Start the transcription and view job status)
     // Prevents from continously creating new objects while waiting
     const jobCommand = new StartTranscriptionJobCommand(transcribeParam);
@@ -154,22 +131,20 @@ async function transcribe() {
 
     // Send transcribe job command and wait for results
     const data = await transcribeClient.send(jobCommand);
-    statusMessage.innerHTML = "Transaction in progress, please wait..";
+    statusMessage.innerHTML = "Transcription in progress, please wait..";
 
     // While: The job status is  still not complete..
-    while (true) 
-    {
+    while (true) {
       status = await transcribeClient.send(readyCommand);
 
-      if (status.TranscriptionJob.TranscriptionJobStatus == "COMPLETED") 
-      {
+      if (status.TranscriptionJob.TranscriptionJobStatus == "COMPLETED") {
         break;
       }
     }
 
     const resultsParam = {
       Bucket: "mobuicead",
-      Key: "job1.json"
+      Key: `${filejobName}.json`
     };
 
     // Send command to the S3 client
@@ -213,6 +188,10 @@ async function transcribe() {
     keyWords.forEach(element => keyText.value += element + "\n");
 
     statusMessage.innerHTML = "Complete!";
+
+    // Update HTML
+    button.hidden = false;
+    file.hidden = false;
     loader.hidden = true;
   }
   catch (err) {

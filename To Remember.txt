@@ -1,3 +1,0 @@
-Create an AWS Account
-1. Create a user and attach the necessary policies to the user
-2. Create access keys on that user, which is then used to make programmic calls to the AWS services
