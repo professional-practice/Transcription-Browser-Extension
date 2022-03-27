@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Olas Transcription Service",
+    "description": "Provides audio/stream transcription services",
+    "version": "1.0",
+    "icons":{
+        "16": "/images/olas-16.png",
+        "48": "/images/olas-48.png",
+        "128":"/images/olas-128.png"
+    },
+    "action":{
+        "default_icon":{
+            "16": "/images/olas-16.png",
+            "48": "/images/olas-48.png",
+            "128":"/images/olas-128.png"
+        },
+        "default_popup":"src/index.html"
+    },
+    "background": {
+        "service_worker": "src/main.js"
+      }
+}
