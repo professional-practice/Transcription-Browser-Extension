@@ -48,19 +48,23 @@
     2.4. Update all of the **Bucket** parameters found in the index.js
 
 
-## Bundling the scripts
+## Bundling the scripts (Developer Tool)
 This is a static site consisting only of HTML, CSS, and client-side JavaScript. 
 
 However, a build step is required to enable the modules to work natively in the browser.
 
 To bundle the JavaScript and Node.js for this example in a single file named main.js, 
-enter the following command in the command line in the src folder of this directory:
+enter the following command in a terminal window within your IDE in the src folder of this directory:
+
+**../node_modules/.bin/webpack index.js --mode development --target web --devtool false -o main.js**
+
+To note: This is only needed to be done if changes are made to any of the .js files since I have included the main.js within this repo. If this does not work, install the specified versions of webpack and webpack-cli globally and run:
 
 **webpack index.js --mode development --target web --devtool false -o main.js**
 
 
 ## Running the application
-Navigate to **chrome://extensions** in your Google Chrome browser. Click on **Load unpacked** and choose the root directory of this folder. You may now use the browser extension.
+Navigate to **chrome://extensions** in your Google Chrome browser. Enable **Developer Mode**. Click on **Load unpacked** and choose the root directory of this folder. You may now use the browser extension.
 
 ## Twilio
 This browser extension was built so call recordings from Twilio calls could be uploaded for further insights

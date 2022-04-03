@@ -15,115 +15,140 @@ Source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
   animation: spin 2s linear infinite;
 }
 
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
   }
 
-  body, html{
-    width: 700px;
-    height: 540px;
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
 
-  * {
-    box-sizing: border-box;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  #backgroundimg {
-    background-image: url('https://images.ctfassets.net/xj0skx6m69u2/6XtpFUVse6U43tKsCFlqK/716080a1a6e89a61c92968220f91155f/stockfresh_8245621_female-customer-services-agent-in-call-center_sizeS.jpg?fm=jpg&w=648&h=426&fit=fill&f=Right&q=85');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed; 
-    height: 100%;
-    filter: blur(5px);
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0
   }
 
-  #myDiv {
-    display: none;
-    text-align: center;
+  to {
+    bottom: 0px;
+    opacity: 1
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0
   }
 
-  #work-area{
-    display:flex;
-    width: 500px;
+  to {
+    bottom: 0;
+    opacity: 1
   }
-  
-  textarea{
-    overflow-y: scroll;
-    display: inline;
-    float: none;
-    height: 300px;
-    width: 250px;
-  }
+}
 
-  #transcription {
-    width: 300px;
-    height: 300px;
-  }
+body,
+html {
+  width: 700px;
+  height: 540px;
+}
 
-  #transcribeAudio{
-    position: relative;
-    margin-top: 30px;
-    left: 2%;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  #status{
-    text-align: center;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
+#backgroundimg {
+  background-image: url('https://images.ctfassets.net/xj0skx6m69u2/6XtpFUVse6U43tKsCFlqK/716080a1a6e89a61c92968220f91155f/stockfresh_8245621_female-customer-services-agent-in-call-center_sizeS.jpg?fm=jpg&w=648&h=426&fit=fill&f=Right&q=85');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  filter: blur(5px);
+}
 
-  #options{
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
+#myDiv {
+  display: none;
+  text-align: center;
+}
 
-  #container
-  {
-    background-color: rgb(194, 194, 194); /* Fallback color */
-    background-color: rgba(134, 119, 119, 0.4); /* Black w/opacity/see-through */
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 80%;
-    height: 70%;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  textarea{
-    resize: none;
-    margin: 30px;
-  }
+#work-area {
+  display: flex;
+  width: 500px;
+}
 
-  h1{
-   position: relative;
-   left: 45%;
-  }
+textarea {
+  overflow-y: scroll;
+  display: inline;
+  float: none;
+  height: 300px;
+  width: 250px;
+}
+
+#transcription {
+  width: 300px;
+  height: 300px;
+}
+
+#transcribeAudio {
+  position: relative;
+  margin-top: 30px;
+  left: 2%;
+}
+
+.texts {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#status {
+  text-align: center;
+}
+
+#container {
+  background-color: rgb(194, 194, 194);
+  /* Fallback color */
+  background-color: rgba(134, 119, 119, 0.4);
+  /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  height: 70%;
+  padding: 20px;
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+  margin: 30px;
+}
+
+h1 {
+  position: relative;
+  left: 45%;
+}
