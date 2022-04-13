@@ -27,6 +27,10 @@ async function upload() {
     statusMessage = document.getElementById("status");
     button = document.getElementById("audio-button");
 
+    // Clear the current text fields
+    transcriptionField.value = "";
+    insightsField.value = "";
+
     // Retrieve the file name with the file type and without
     file = fileInput.files[0].name.toString();
     fileName = file.split('.').slice(0, -1).join('.');
@@ -161,7 +165,7 @@ async function transcribe() {
       Media: {
         MediaFileUri: `s3://${"mobuicead"}/${file}`
       },
-      OutputBucketName: upload.Bucket
+      OutputBucketName: "mobuicead"
     };
 
     // Transcribe Command Input: Get Transcription Job
@@ -187,6 +191,7 @@ async function transcribe() {
       status = await transcribeClient.send(readyCommand);
 
       if (status.TranscriptionJob.TranscriptionJobStatus == "COMPLETED") {
+        console.log(status);
         break;
       }
     }

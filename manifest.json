@@ -15,8 +15,5 @@
             "128":"/images/olas-128.png"
         },
         "default_popup":"src/index.html"
-    },
-    "background": {
-        "service_worker": "src/main.js"
-      }
+    }
 }
