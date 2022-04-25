@@ -81,10 +81,11 @@ This browser extension was built so call recordings from Twilio calls could be u
 
 Do note: For a free trial number, the redirected number must first be authenticated, this can be added under **Verified Caller ID**
 
-4. Navigate to **Phone Calls - Active Numbers** and select your number
-5. Under **A Call Comes In**, change this to a TwiML Bin and select your newly created Bin
-6. You should now see call recordings once finished under **Monitor - Logs - Call recordings**
-7. Download the call of your choosing in either .wav or .mp3 and upload to the browser extension!
+4. In the code be sure to update the Twilio phone number to the new number in which you have purchased 
+5. Navigate to **Phone Calls - Active Numbers** and select your number
+6. Under **A Call Comes In**, change this to a TwiML Bin and select your newly created Bin
+7. You should now see call recordings once finished under **Monitor - Logs - Call recordings**
+8. Download the call of your choosing in either .wav or .mp3 and upload to the browser extension!
 
 
 
