@@ -65,6 +65,7 @@ This application also provides useful key insights based on the results of the t
 
 
 ## Bundling the scripts (Developer Tool)
+----------------------------------------
 This is a static site consisting only of HTML, CSS, and client-side JavaScript. 
 
 However, a build step is required to enable the modules to work natively in the browser.
@@ -80,4 +81,5 @@ To note: This is only needed to be done if changes are made to any of the .js fi
 
 
 ## Running the application
+--------------------------
 Navigate to **chrome://extensions** in your Google Chrome browser. Enable **Developer Mode**. Click on **Load unpacked** and choose the root directory of this folder. You may now use the browser extension.
