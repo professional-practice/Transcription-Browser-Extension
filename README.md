@@ -1,10 +1,10 @@
 ## Introduction
 ---------------
-When recruiters are in the process of hiring new employees, they must speak to a varying degree of candidates in order to find those in which who are best suited for  the role that they are hiring for. During this process, the recruiter must take note of key information regarding the candidates within their conversation, such as:
+When recruiters are in the process of hiring new employees, they must speak to a varying degree of candidates in order to find those in which are best suited for the role that they are hiring for. During this process, the recruiter must take note of key information regarding the candidates within their conversation, such as:
 
-- Desired salary, 
-- Desired locations, 
-- Working environment,
+- Desired salary
+- Desired locations
+- Working environment
 - Expected hours, etc.
 
 It is considered common practice for recruiters to take such notes while on call with a candidate. However, this can lead to information being falsely recorded or potentially lost amidst conversation. This can result in incorrectly determining the right candidate for a potential role within the company, which is the job of the recruiter.
@@ -30,11 +30,11 @@ This application also provides useful key insights based on the results of the t
     1.5. Open this and click the **Add permissions** button, alongside the **Attach Policies**, then **Create Policy**.
 
     1.6. For the unauthenticated user to use this application, we must add the services that are needed. (Transcribe, Comprehend, S3, Cognito Identity). Since we are only using the application ourselves, select for the role to have all access levels
-    (Read, Write etc.) and access all resources within these services. Howeverthis should be changed accordingly for security purposes when used in a live environment.
+    (Read, Write etc.) and allow access to all resources within these services. However, this should be changed accordingly for security purposes when used in a live environment.
 
     1.7. Once created, return to the unauthenticated user and add the created policy.
 
-    1.8. Within the files located in the libs folder, change the **Identity Pool ID** to provided ID you received on creating your identity pool.
+    1.8. Within the files located in the libs folder of this application, change the **Identity Pool ID** to the provided ID you received on creating your identity pool.
 
 2. **AWS Bucket**
 
@@ -61,7 +61,7 @@ This application also provides useful key insights based on the results of the t
         }
     ]`
     
-    2.4. Update all of the **Bucket** parameters found in the index.js
+    2.4. Update all of the **Bucket** parameters found in the index.js file of this application.
 
 
 ## Bundling the scripts (Developer Tool)
@@ -74,7 +74,7 @@ enter the following command in a terminal window within your IDE in the src fold
 
 `../node_modules/.bin/webpack index.js --mode development --target web --devtool false -o main.js`
 
-To note: This is only needed to be done if changes are made to any of the .js files since I have included the main.js within this repo. If this does not work, install the specified versions of webpack and webpack-cli globally and run:
+To note: This is only needed to be done if changes are made to any of the .js files since I have included the main.js within this repo. If this does not work, install the specified versions of webpack and webpack-cli within the package.json globally and run:
 
 `webpack index.js --mode development --target web --devtool false -o main.js`
 
