@@ -1,4 +1,19 @@
+## Introduction
+---------------
+When recruiters are in the process of hiring new candidates, they must speak to a varying degree of candidates in order to find those in which who are best suited for  the role that they are hiring. During this process, the recruiter must take note of key information regarding the candidates within their conversation, such as:
 
+- Desired salary, 
+- Desired locations, 
+- Working environment,
+- Expected hours, etc.
+
+It is considered common practice for recruiter to take such notes while on call with a candidate. However, this can lead to information being falsely recorded or potentially lost amidst conversation. This can result in incorrectly determining the right candidate for a potential role within the company, which is the job of the recruiter.
+
+The application we have developed attempts to solve this problem, by developing a system which allows for an audio recording to be analysed for the recruiter, in order to determine any valuable information which may have been captured.
+
+Within this repository, you will find a web application in the form of a Chrome browser extension. The purpose application is to allow the recruiter to provide audio files to be **transcribed** directly into your browser window and see the results directly.
+
+This application also provides useful key insights based on the results of the transcription which are deemed useful.
 
 ## Prerequisites
 -------------
